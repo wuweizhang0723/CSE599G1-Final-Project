@@ -1,0 +1,1 @@
+python ./scripts/train_model.py --out_folder='./output/tf/' --attention_layers=2 --conv_layers=6 --conv_repeat=1 --kernel_number=1024 --kernel_length=7 --filter_number=512 --kernel_size=5 --pooling_size=2 >> out2.out

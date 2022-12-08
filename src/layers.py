@@ -162,6 +162,7 @@ class Attention(nn.Module):
         dim_value=64,
         dropout=0.0,
         pos_dropout=0.0,
+        num_rel_pos_features=66,
     ):
         super().__init__()
         self.scale = dim_key**-0.5
@@ -179,7 +180,7 @@ class Attention(nn.Module):
 
         # relative positional encoding
 
-        self.num_rel_pos_features = 66  ###########
+        self.num_rel_pos_features = num_rel_pos_features  ###########
 
         self.to_rel_k = nn.Linear(
             self.num_rel_pos_features, dim_key * heads, bias=False
