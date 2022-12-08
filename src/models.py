@@ -59,15 +59,40 @@ class Base(pl.LightningModule):
 
         self.log("test_loss", loss)
 
+        # TP, FP, TN, FN
+        y_hat = y_hat - 0.5
+        y_hat = (y_hat> 0).type(torch.uint8)
+    
+        TP = len(y_hat[(y_hat==1) & (y==1)])
+        TN = len(y_hat[(y_hat==0) & (y==0)])
+        FP = len(y_hat[(y_hat==1) & (y==0)])
+        FN = len(y_hat[(y_hat==0) & (y==1)])
+
+        return torch.Tensor([[TP, TN, FP, FN]])
+
+    def test_epoch_end(self, test_step_outputs):
+        all_data = torch.cat(test_step_outputs, dim=0)
+        sum_data = torch.sum(all_data, dim=0)
+
+        TP = sum_data[0]
+        TN = sum_data[1]
+        FP = sum_data[2]
+        FN = sum_data[3]
+
+        precision = TP/(TP+FP)
+        recall = TP/(TP+FN)
+
+        self.log("precision", precision)
+        self.log("recall", recall)
+
     def predict_step(self, batch, batch_idx, dataloader_idx=0):
-        return self(batch[0])
+        return self(batch[0]), batch[1]
 
 
 
 class Transformer(Base):
     def __init__(
         self,
-        head=3,
         kernel_number=512,
         kernel_length=7,
         filter_number=256,
