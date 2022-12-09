@@ -86,7 +86,7 @@ class Base(pl.LightningModule):
         self.log("recall", recall)
 
     def predict_step(self, batch, batch_idx, dataloader_idx=0):
-        return self(batch[0]), batch[1]
+        return torch.cat((self(batch[0]), batch[1]), dim=1)
 
 
 

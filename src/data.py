@@ -127,6 +127,7 @@ def load_data2(
 
 
 def load_data(
+    file_path,
     batch_size=256,
     num_workers=12,
     persistent_workers=False,
@@ -134,7 +135,7 @@ def load_data(
 ):
     """Load data from file."""
 
-    with h5py.File("./data/encode_roadmap.h5", "r") as f:
+    with h5py.File(file_path, "r") as f:
         X_train= f['train_in'][()]
         X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], X_train.shape[3])
         X_train = np.array(X_train)

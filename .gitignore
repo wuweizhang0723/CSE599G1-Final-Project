@@ -2,3 +2,5 @@
 /data
 /output
 /lightning_logs
+/scripts/lightning_logs
+*.out
