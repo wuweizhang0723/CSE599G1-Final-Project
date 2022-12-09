@@ -12,7 +12,7 @@ from pytorch_lightning.loggers import TensorBoardLogger
 from src import data, models
 
 
-checkpoint_path = './output/tf/2_66_6_1_1024_7_512_5_2_0.0001_2_256/epoch=1-step=14688.ckpt'
+checkpoint_path = './output/tf/2_66_6_1_1024_7_512_5_2_0.0001_2_256/epoch=9-step=73440.ckpt'
 
 attention_layers = 2
 conv_layers = 6
@@ -53,11 +53,10 @@ trainer = pl.Trainer(
     profiler="simple",
 )
 
-val_predictions = trainer.test(single_model, dataloaders=[valloader], ckpt_path=checkpoint_path)
+predictions = trainer.test(single_model, dataloaders=[valloader], ckpt_path=checkpoint_path)
 # val_predictions = predictions[0]
 # test_predictions = predictions[1]
-print(val_predictions)
-print(val_predictions[0])
+print(predictions)
 
 # val_precision = val_predictions['precision']
 # val_recall = val_predictions['recall']

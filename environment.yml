@@ -13,8 +13,8 @@ dependencies:
   - brotli-bin=1.0.9=h166bdaf_7
   - brotlipy=0.7.0=py39h27cfd23_1003
   - bzip2=1.0.8=h7b6447c_0
-  - ca-certificates=2022.9.24=ha878542_0
-  - certifi=2022.9.24=pyhd8ed1ab_0
+  - ca-certificates=2022.10.11=h06a4308_0
+  - certifi=2022.9.24=py39h06a4308_0
   - cffi=1.15.1=py39h74dc2b5_0
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - cryptography=37.0.1=py39h9ce1e76_0
@@ -36,6 +36,8 @@ dependencies:
   - gnutls=3.6.15=he1e5248_0
   - gst-plugins-base=1.14.0=h8213a91_2
   - gstreamer=1.14.0=h28cd5cc_2
+  - h5py=3.7.0=py39h737f45e_0
+  - hdf5=1.10.6=h3ffc7dd_1
   - icu=58.2=hf484d3e_1000
   - idna=3.4=py39h06a4308_0
   - intel-openmp=2021.4.0=h06a4308_3561
@@ -61,6 +63,8 @@ dependencies:
   - libevent=2.1.12=h8f2d780_0
   - libffi=3.3=he6710b0_2
   - libgcc-ng=11.2.0=h1234567_1
+  - libgfortran-ng=11.2.0=h00389a5_1
+  - libgfortran5=11.2.0=h1234567_1
   - libgomp=11.2.0=h1234567_1
   - libidn2=2.3.2=h7f8727e_0
   - libllvm10=10.0.1=he513fc3_3
@@ -97,7 +101,7 @@ dependencies:
   - numpy=1.23.3=py39h14f4228_0
   - numpy-base=1.23.3=py39h31eccc5_0
   - openh264=2.1.1=h4ff587b_0
-  - openssl=1.1.1q=h7f8727e_0
+  - openssl=1.1.1s=h7f8727e_0
   - packaging=21.3=pyhd3eb1b0_0
   - parso=0.8.3=pyhd3eb1b0_0
   - pcre=8.45=h9c3ff4c_0
@@ -149,4 +153,41 @@ dependencies:
   - zeromq=4.3.4=h2531618_0
   - zlib=1.2.12=h5eee18b_3
   - zstd=1.5.2=ha4553b6_0
+  - pip:
+    - absl-py==1.3.0
+    - aiohttp==3.8.3
+    - aiosignal==1.3.1
+    - async-timeout==4.0.2
+    - attrs==22.1.0
+    - cachetools==5.2.0
+    - einops==0.6.0
+    - fire==0.4.0
+    - frozenlist==1.3.3
+    - fsspec==2022.11.0
+    - google-auth==2.15.0
+    - google-auth-oauthlib==0.4.6
+    - grpcio==1.51.1
+    - importlib-metadata==5.1.0
+    - lightning-utilities==0.3.0
+    - markdown==3.4.1
+    - markupsafe==2.1.1
+    - multidict==6.0.3
+    - oauthlib==3.2.2
+    - protobuf==3.20.1
+    - pyasn1==0.4.8
+    - pyasn1-modules==0.2.8
+    - pytorch-lightning==1.8.3.post1
+    - pyyaml==6.0
+    - requests-oauthlib==1.3.1
+    - rsa==4.9
+    - tensorboard==2.11.0
+    - tensorboard-data-server==0.6.1
+    - tensorboard-plugin-wit==1.8.1
+    - tensorboardx==2.5.1
+    - termcolor==2.1.1
+    - torchmetrics==0.11.0
+    - tqdm==4.64.1
+    - werkzeug==2.2.2
+    - yarl==1.8.2
+    - zipp==3.11.0
 prefix: /homes/gws/wz86/miniconda3/envs/CSE599G1
