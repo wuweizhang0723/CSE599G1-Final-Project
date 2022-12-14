@@ -52,7 +52,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--hidden_size", help="the hidden size of fc layers", default=256
     )
-    parser.add_argument("--learning_rate", default=0.002)
+    parser.add_argument("--learning_rate", default=1e-4)
 
 
     parser.add_argument(
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     checkpoint_path = output_path
     log_path = out_folder + "/log"
 
-    trainloader, valloader, testloader = data.load_data()
+    trainloader, valloader, testloader = data.load_data('../data/encode_roadmap.h5')
     single_model = models.Transformer(
             kernel_number=kernel_number,
             kernel_length=kernel_length,
@@ -139,14 +139,14 @@ if __name__ == "__main__":
         )
 
     
-    es = EarlyStopping(monitor="val_loss", patience=5)
+    es = EarlyStopping(monitor="val_loss", patience=7)
     checkpoint_callback = ModelCheckpoint(
-        checkpoint_path, monitor="val_loss", mode="min", save_top_k=1
+        checkpoint_path, monitor="val_avg_auc_score", mode="max", save_top_k=1
     )
     lr_monitor = LearningRateMonitor()
     logger = TensorBoardLogger(log_path, name="model")
     trainer = pl.Trainer(
-        devices=[1],
+        devices=[0],
         accelerator="gpu",
         callbacks=[es, checkpoint_callback, lr_monitor],
         benchmark=False,

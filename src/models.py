@@ -1,4 +1,5 @@
 from math import ceil
+from sklearn import metrics
 import numpy as np
 import torch
 import torch.nn as nn
@@ -28,7 +29,7 @@ class Base(pl.LightningModule):
             "scheduler": torch.optim.lr_scheduler.ReduceLROnPlateau(
                 # TODO: add an argument to control the patience
                 optimizer,
-                patience=2,
+                patience=3,
             ),
             "monitor": "val_loss",
         }
@@ -51,6 +52,23 @@ class Base(pl.LightningModule):
         loss = F.binary_cross_entropy(y_hat, y, reduction="sum")
 
         self.log("val_loss", loss)
+
+        return torch.cat((y_hat, y), dim=1)
+
+    def validation_epoch_end(self, validation_step_outputs):
+        all_data = torch.cat(validation_step_outputs, dim=0).cpu().numpy()
+        all_pred = all_data[:, :164]
+        all_truth = all_data[:, 164:]
+
+        avg_auc_score = 0
+        for i in range(164):
+            truth = all_truth[:, i]
+            pred = all_pred[:, i]
+            score = metrics.roc_auc_score(truth, pred)
+            avg_auc_score += score
+        avg_auc_score = avg_auc_score / 164
+
+        self.log("val_avg_auc_score", avg_auc_score)
     
     def test_step(self, batch, batch_idx):
         x, y = batch
