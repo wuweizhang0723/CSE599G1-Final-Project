@@ -16,4 +16,4 @@ pip install -e .
 ```
 
 
-记得update environemtn.yml file!!!!!!!!!!!!!!!
+Training script is at `./scripts/train_model.py`
